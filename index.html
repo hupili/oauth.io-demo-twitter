@@ -1,0 +1,58 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="oauth-js/oauth.js"></script>
+    <title></title>
+    <script type="text/javascript" charset="utf-8">
+$(function(){
+    OAuth.initialize('NaEC2nV5ZWa3Tu0Gesznn6zGWcA');
+    window.auth = function(){
+        OAuth.popup('twitter', function(err, result) {
+            //handle error with err
+            //use result.access_token in your API request
+            //window._err = err;
+            //window._result = result;
+            //alert(result.oauth_token);
+            $('#result #oauth_token').html(result.oauth_token);
+            $('#result #oauth_token_secret').html(result.oauth_token_secret);
+        });
+    };
+});
+    </script>
+    </head>
+<body>
+<div class="container">
+    <div class="row-fluid">
+        <h1>Demo of OAuth.io for Twitter</h1>
+    </div>
+    <hr />
+    <div class="row-fluid">
+        <h2>Quick Trial</h2>
+        <div id="result" class="span8 offset2">
+            <form action="" method="get" accept-charset="utf-8">
+                <label for="">oauth_token:</label>
+                <pre id="oauth_token"></pre>
+                <br />
+                <label for="">oauth_token_secret:</label>
+                <pre id="oauth_token_secret"></pre>
+                <br />
+                <button class='btn-primary' type="button" onclick="auth()">Go to auth on twitter</button>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="row-fluid">
+        <h2>Configuration Steps</h2>
+        <ul>
+            <li>
+            <a href="https://oauth.io/#/docs">https://oauth.io/#/docs</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+
