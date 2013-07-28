@@ -2,6 +2,8 @@
 
 A complete Twitter API access demo.
 
+See <http://blog.hupili.net/oauth.io-demo-twitter/>
+
 ## Why
 
    * <http://oauth.io> is a good integration of OAuth services.
