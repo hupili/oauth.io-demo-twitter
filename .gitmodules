@@ -1,3 +1,6 @@
 [submodule "oauth-js"]
 	path = oauth-js
 	url = git@github.com:oauth-io/oauth-js.git
+[submodule "codebird-js"]
+	path = codebird-js
+	url = git://github.com/mynetx/codebird-js.git

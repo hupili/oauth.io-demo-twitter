@@ -5,7 +5,9 @@
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="oauth-js/oauth.js"></script>
-    <title></title>
+    <script src="codebird-js/codebird.js"></script>
+    <script src="codebird-js/sha1.js"></script>
+    <title>Demo of oauth.io with Twitter</title>
     <script type="text/javascript" charset="utf-8">
 $(function(){
     window.auth = function(){
@@ -20,6 +22,42 @@ $(function(){
             $('#oauth_twitter_trial #oauth_token_secret').html(result.oauth_token_secret);
         });
     };
+    window.home_timeline = function(){
+        cb          = new Codebird;
+        var current_url = location.toString();
+        //var query       = current_url.match(/\?(.+)$/).split("&amp;");
+        //var parameters  = {};
+        //var parameter;
+        cb.setConsumerKey(
+            $('#oauth_twitter_timeline #consumer_key').val(),
+            $('#oauth_twitter_timeline #consumer_secret').val()
+        );
+        //console.log("ss" + $('#oauth_twitter_timeline #consumer_key').val());
+        //console.log("ss" + $('#oauth_twitter_timeline #consumer_secret').val());
+        //return ;
+        cb.setToken(
+            $('#oauth_twitter_trial #oauth_token').html(),
+            $('#oauth_twitter_trial #oauth_token_secret').html()
+        );
+        _timeline = cb.__call(
+            "statuses_homeTimeline",
+            {},
+            function (reply) {
+                //window._reply = reply;
+                //console.log(reply);
+                //$('#oauth_twitter_timeline #timeline').html(reply.toString());
+                var _timeline = "";
+                for (i=0; i<reply.length; i++)
+                {
+                    var _status = "<" + i.toString() + "> @" + reply[i].user.screen_name
+                    + " (" + reply[i].created_at + "):\n"
+                    + reply[i].text + "\n\n";
+                    _timeline += _status
+                }
+                $('#oauth_twitter_timeline #timeline').html(_timeline);
+            }
+        );
+    };
 });
     </script>
     </head>
@@ -31,17 +69,34 @@ $(function(){
     <hr />
     <div class="row-fluid">
         <h2>Quick Trial</h2>
-        <div id="oauth_twitter_trial" class="span8 offset2">
-            <form action="" method="get" accept-charset="utf-8">
-                <label for="">Your pub key from oauth.io:</label>
-                <input style="width:100%" type="text" name="" id="public_key" value="NaEC2nV5ZWa3Tu0Gesznn6zGWcA" />
-                <label for="">oauth_token:</label>
-                <pre id="oauth_token"></pre>
-                <label for="">oauth_token_secret:</label>
-                <pre id="oauth_token_secret"></pre>
-                <br />
-                <button class='btn-primary' type="button" onclick="auth()">Go to auth on twitter</button>
-            </form>
+        <div class="row-fluid">
+            <div class="span8 offset2">
+                <h3>Step 1. Auth via oauth.io</h3>
+                <form id="oauth_twitter_trial" action="" method="get" accept-charset="utf-8">
+                    <label for="">Your pub key from oauth.io:</label>
+                    <input style="width:100%" type="text" name="public_key" id="public_key" value="k-VMMfPUL3iapnCdJhCmMqNhbvw" />
+                    <label for="">oauth_token:</label>
+                    <pre id="oauth_token"></pre>
+                    <label for="">oauth_token_secret:</label>
+                    <pre id="oauth_token_secret"></pre>
+                    <br />
+                    <button class='btn-primary' type="button" onclick="auth()">Go to auth on twitter</button>
+                </form>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span8 offset2">
+                <h3>Step 2. Get Timeline</h3>
+                <form id="oauth_twitter_timeline" action="" method="get" accept-charset="utf-8">
+                    <label for="">Your consumer key from Twitter:</label>
+                    <input style="width:100%" type="text" name="consumer_key" id="consumer_key" value="N6vSei0E2fh0gQEJPuwyRg" />
+                    <label for="">Your consumer secret from Twitter:</label>
+                    <input style="width:100%" type="text" name="consumer_secret" id="consumer_secret" value="eEhVyflA8AaPSBJ6DeAFp0j9IxBt2VttxossHO1g" />
+                    <button class='btn-primary' type="button" onclick="home_timeline()">Get Timeline</button>
+                    <label for="">Timeline:</label>
+                    <pre id="timeline"></pre>
+                </form>
+            </div>
         </div>
     </div>
     <hr />
