@@ -72,17 +72,40 @@ $(function(){
     <hr />
     <div class="row-fluid">
         <h2>Quick Trial</h2>
+        <p>
+        This is a zero configuration demo: (with my own credentials)
+        </p>
+        <ol>
+            <li>
+            Just click through each button.
+            </li>
+            <li>
+            First perform OAuth on Twitter via <a href="http://oauth.io">oauth.io</a>.
+            </li>
+            <li>
+            See the obtained <code>oauth_token</code> and <code>oauth_token_secret</code> on the page.
+            </li>
+            <li>
+            Retrieve your timeline (need to wait a few seconds after click).
+            </li>
+        </ol>
         <div class="row-fluid">
             <div class="span8 offset2">
                 <h3>Step 1. Auth via oauth.io</h3>
                 <form id="oauth_twitter_trial" action="" method="get" accept-charset="utf-8">
-                    <label for="">Your pub key from oauth.io:</label>
+                    <label for="">
+                        Your <code>Public key</code> from oauth.io:
+                        <i class='icon-info-sign'></i>
+                    </label>
                     <input style="width:100%" type="text" name="public_key" id="public_key" value="k-VMMfPUL3iapnCdJhCmMqNhbvw" />
-                    <label for="">oauth_token:</label>
+                    <label for="">
+                        <code>oauth_token</code> from Twitter:
+                    </label>
                     <pre id="oauth_token"></pre>
-                    <label for="">oauth_token_secret:</label>
+                    <label for="">
+                        <code>oauth_token_secret</code> from Twitter:
+                    </label>
                     <pre id="oauth_token_secret"></pre>
-                    <br />
                     <button class='btn-primary' type="button" onclick="auth()">Go to auth on twitter</button>
                 </form>
             </div>
@@ -91,9 +114,15 @@ $(function(){
             <div class="span8 offset2">
                 <h3>Step 2. Get Timeline</h3>
                 <form id="oauth_twitter_timeline" action="" method="get" accept-charset="utf-8">
-                    <label for="">Your consumer key from Twitter:</label>
+                    <label for="">
+                        Your <code>consumer_key</code> from Twitter:
+                        <i class='icon-info-sign'></i>
+                    </label>
                     <input style="width:100%" type="text" name="consumer_key" id="consumer_key" value="N6vSei0E2fh0gQEJPuwyRg" />
-                    <label for="">Your consumer secret from Twitter:</label>
+                    <label for="">
+                        Your <code>consumer_secret</code> from Twitter:
+                        <i class='icon-info-sign'></i>
+                    </label>
                     <input style="width:100%" type="text" name="consumer_secret" id="consumer_secret" value="eEhVyflA8AaPSBJ6DeAFp0j9IxBt2VttxossHO1g" />
                     <button class='btn-primary' type="button" onclick="home_timeline()">Get Timeline</button>
                     <label for="">Timeline:</label>
