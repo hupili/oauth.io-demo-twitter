@@ -21,3 +21,7 @@ See <http://blog.hupili.net/oauth.io-demo-twitter/>
 
    * Auth solution: <git://github.com/oauth-io/oauth-js.git>
    * Twitter RESTful API library in JS: <git://github.com/mynetx/codebird-js.git>
+
+## License
+
+[![copyleft](http://unlicense.org/pd-icon.png)](http://unlicense.org)
